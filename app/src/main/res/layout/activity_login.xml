@@ -9,7 +9,8 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="20dp"
-    android:baselineAligned="false">
+    android:baselineAligned="false"
+    tools:context=".LoginActivity">
 
     <TextView
         android:layout_width="match_parent"
@@ -22,7 +23,7 @@
         android:layout_marginBottom="30dp"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/userid"
+
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,6 +34,7 @@
         android:hint="Email">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/userid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
@@ -41,7 +43,6 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/userpassword"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -56,6 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
+            android:id="@+id/userpassword"
             android:fontFamily="@font/maplestorylight"/>
 
     </com.google.android.material.textfield.TextInputLayout>

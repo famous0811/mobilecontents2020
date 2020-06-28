@@ -8,12 +8,12 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mobilecontent.databinding.ActivitySignupBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -28,23 +28,27 @@ public class SignupActivity extends AppCompatActivity {
     private String email,nickname,password;
     private StorageReference mStorageRef;
     private SharedPreferences sp;
+    private ActivitySignupBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        mAuth = FirebaseAuth.getInstance();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
+        binding=ActivitySignupBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
+        mAuth = FirebaseAuth.getInstance();
         mStorageRef = FirebaseStorage.getInstance().getReference();
 
-        Button signupButton=findViewById(R.id.signup);
-        EditText passwordtext=(EditText)findViewById(R.id.password);
-        EditText againpasswordtext=(EditText)findViewById(R.id.againpassword);
-
-        signupButton.setOnClickListener(new Button.OnClickListener() {
+        binding.back.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignupActivity.this,LoginActivity.class));
+            }
+        });
+        binding.signup.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                email=((EditText)findViewById(R.id.email)).getText().toString();
-                nickname=((EditText)findViewById(R.id.nickname)).getText().toString();
+                email=binding.email.getText().toString();
+                nickname=binding.nickname.getText().toString();
 
                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
@@ -66,7 +70,8 @@ public class SignupActivity extends AppCompatActivity {
                         });
             }
         });
-        passwordtext.addTextChangedListener(new TextWatcher(){
+
+        binding.password.addTextChangedListener(new TextWatcher(){
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -78,14 +83,15 @@ public class SignupActivity extends AppCompatActivity {
             }
 
             @Override
-            public void afterTextChanged(Editable arg0) {
+            public void afterTextChanged(Editable s) {
                 // 입력이 끝났을 때
 //                if(!arg0.toString().contains("@"))
                 //애러처리 해주기
-                password=arg0.toString();
+                password=s.toString();
             }
         });
-        againpasswordtext.addTextChangedListener(new TextWatcher(){
+
+        binding.againpassword.addTextChangedListener(new TextWatcher(){
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -114,13 +120,6 @@ public class SignupActivity extends AppCompatActivity {
         editor.putString("email",email);
         editor.putString("password",password);
         editor.putString("nickname",nickname);
-        //다양한 형태의 변수값을 저장할 수 있다.
-        //editor.putString();
-        //editor.putBoolean();
-        //editor.putFloat();
-        //editor.putLong();
-        //editor.putInt();
-        //editor.putStringSet();
         editor.apply();
     }
 }
