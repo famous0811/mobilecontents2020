@@ -6,15 +6,17 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.mobilecontent.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
     private FragmentManager fm = getSupportFragmentManager();
-
+    private ActivityMainBinding binding;
     private main searchFragment = new main();
     private alream AlreamFragment =new alream();
     private question questionFragment= new question();
@@ -25,7 +27,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding= ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        setSupportActionBar(binding.toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(false);//기본 제목을 없애줍니다.
+        actionBar.setDisplayHomeAsUpEnabled(false);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -40,30 +49,31 @@ public class MainActivity extends AppCompatActivity {
 //                toolbar.setTitle("test");
 //                setSupportActionBar();
 //                ActionBar actionBar = getSupportActionBar();
+                binding.title.setText("home");
                 FragmentTransaction transaction = fm.beginTransaction();
                 switch (item.getItemId()) {
                     case R.id.navigation_home: {
-//                        actionBar.setTitle("home");
+                        binding.title.setText("home");
                         transaction.replace(R.id.nav_host_fragment,searchFragment).commitAllowingStateLoss();
                         break;
                     }
                     case R.id.navigation_alarm: {
-//                        actionBar.setTitle("alarm");
+                        binding.title.setText("alram");
                         transaction.replace(R.id.nav_host_fragment,AlreamFragment).commitAllowingStateLoss();
                         break;
                     }
                     case R.id.navigation_question: {
-//                        actionBar.setTitle("question");
+                        binding.title.setText("question");
                         transaction.replace(R.id.nav_host_fragment, questionFragment).commitAllowingStateLoss();
                         break;
                     }
                     case R.id.navigation_user: {
-//                        actionBar.setTitle("user");
+                        binding.title.setText("user");
                         transaction.replace(R.id.nav_host_fragment, quserFramgent).commitAllowingStateLoss();
                         break;
                     }
                     case R.id.navigation_write: {
-//                        actionBar.setTitle("write");
+                        binding.title.setText("write");
                         transaction.replace(R.id.nav_host_fragment, writeFragment).commitAllowingStateLoss();
                         break;
                     }
@@ -71,5 +81,8 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+    @Override public void onBackPressed() {
+        //super.onBackPressed();
     }
 }

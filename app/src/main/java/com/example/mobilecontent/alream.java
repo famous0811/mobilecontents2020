@@ -84,6 +84,7 @@ public class alream extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+//        getActivity().supportActionBar?.title("your title");
     }
     public void addItem(Drawable icon, String title, String cycle, String time, String week){
         recyclerItem_alream item=new recyclerItem_alream();
