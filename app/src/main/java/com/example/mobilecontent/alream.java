@@ -32,6 +32,7 @@ public class alream extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
     private FragmentAlreamBinding binding;
     private RecyclerView.Adapter mAdapter;
     ArrayList<recyclerItem_alream> mList = new ArrayList<recyclerItem_alream>();

@@ -33,7 +33,6 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-//        startActivity(new Intent(LoginActivity.this,SignupActivity.class));
         //저장된 값을 불러오기 위해 같은 네임파일을 찾음.
         sf = getSharedPreferences("userdata",MODE_PRIVATE);
         //text라는 key에 저장된 값이 있는지 확인. 아무값도 들어있지 않으면 ""를 반환

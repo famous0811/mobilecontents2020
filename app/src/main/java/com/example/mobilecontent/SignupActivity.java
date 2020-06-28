@@ -15,32 +15,37 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mobilecontent.databinding.ActivitySignupBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignupActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     public static final String TAG = "shared";
     private String email,nickname,password;
-    private StorageReference mStorageRef;
     private SharedPreferences sp;
     private ActivitySignupBinding binding;
+    private boolean backsw=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding=ActivitySignupBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        //로그인부분
         mAuth = FirebaseAuth.getInstance();
-        mStorageRef = FirebaseStorage.getInstance().getReference();
 
         binding.back.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
+                backsw=true;
                 startActivity(new Intent(SignupActivity.this,LoginActivity.class));
             }
         });
@@ -115,6 +120,30 @@ public class SignupActivity extends AppCompatActivity {
     @Override
     protected void onStop(){
         super.onStop();
+        if(backsw)
+            return;
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        Map<String, Object> user = new HashMap<>();
+        user.put("email", email);
+        user.put("nickname", nickname);
+        db.collection("users").document(nickname)
+                .set(user)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error writing document", e);
+                    }
+                });
+
+        //sharedpreferences에 값 저장
         sp = getSharedPreferences("userdata",MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("email",email);
