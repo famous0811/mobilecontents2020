@@ -50,7 +50,7 @@ public class writting extends AppCompatActivity {
                 userdata.put("Open status",false);
                 userdata.put("goods",0);
                 userdata.put("views",0);
-
+//test
                 db.collection("userWritting").document(title)
                         .set(userdata)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
