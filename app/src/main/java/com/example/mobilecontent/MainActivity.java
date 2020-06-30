@@ -1,8 +1,10 @@
 package com.example.mobilecontent;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -40,6 +42,10 @@ public class MainActivity extends AppCompatActivity {
 
         FragmentTransaction transaction = fm.beginTransaction();
         transaction.replace(R.id.nav_host_fragment, searchFragment).commitAllowingStateLoss();
+
+        binding.title.setText("home");
+        binding.topbarButton.setVisibility(View.INVISIBLE);
+
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
 
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -49,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 //                toolbar.setTitle("test");
 //                setSupportActionBar();
 //                ActionBar actionBar = getSupportActionBar();
-                binding.title.setText("home");
+                binding.topbarButton.setVisibility(View.INVISIBLE);
                 FragmentTransaction transaction = fm.beginTransaction();
                 switch (item.getItemId()) {
                     case R.id.navigation_home: {
@@ -59,10 +65,24 @@ public class MainActivity extends AppCompatActivity {
                     }
                     case R.id.navigation_alarm: {
                         binding.title.setText("alram");
+                        binding.topbarButton.setVisibility(View.VISIBLE);
+                        binding.topbarButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(MainActivity.this,addAlream.class));
+                            }
+                        });
                         transaction.replace(R.id.nav_host_fragment,AlreamFragment).commitAllowingStateLoss();
                         break;
                     }
                     case R.id.navigation_question: {
+                        binding.topbarButton.setVisibility(View.VISIBLE);
+                        binding.topbarButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(MainActivity.this,sarchpiture.class));
+                            }
+                        });
                         binding.title.setText("question");
                         transaction.replace(R.id.nav_host_fragment, questionFragment).commitAllowingStateLoss();
                         break;
@@ -73,7 +93,14 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     }
                     case R.id.navigation_write: {
+                        binding.topbarButton.setVisibility(View.VISIBLE);
                         binding.title.setText("write");
+                        binding.topbarButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(MainActivity.this,writting.class));
+                            }
+                        });
                         transaction.replace(R.id.nav_host_fragment, writeFragment).commitAllowingStateLoss();
                         break;
                     }

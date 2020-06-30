@@ -5,48 +5,49 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".addAlream">
-
-    <DatePicker
-        android:id="@+id/dataPicker"
+    <TimePicker
+        android:id="@+id/timepicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:calendarViewShown="false"
-        android:datePickerMode="spinner"
+        android:timePickerMode="spinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
     <EditText
+        android:id="@+id/alreamname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="알람 이름"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintTop_toBottomOf="@+id/dataPicker" />
+        app:layout_constraintTop_toBottomOf="@+id/timepicker" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dataPicker">
+        app:layout_constraintTop_toBottomOf="@+id/timepicker">
 
         <TextView
             android:id="@+id/sunday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
             android:text="일"
             android:textSize="25dp"
             app:layout_constraintEnd_toStartOf="@+id/monday"
-            android:layout_marginRight="30dp"
             tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/monday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
             android:text="월"
             android:textSize="25dp"
-            android:layout_marginRight="30dp"
             app:layout_constraintEnd_toStartOf="@+id/textView16"
             tools:ignore="MissingConstraints" />
 
@@ -54,9 +55,9 @@
             android:id="@+id/textView16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
             android:text="화"
             android:textSize="25dp"
-            android:layout_marginRight="30dp"
             app:layout_constraintEnd_toStartOf="@+id/weather"
             tools:ignore="MissingConstraints" />
 
@@ -64,9 +65,9 @@
             android:id="@+id/weather"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
             android:text="수"
             android:textSize="25dp"
-            android:layout_marginRight="30dp"
             app:layout_constraintEnd_toStartOf="@+id/textView14"
             tools:ignore="MissingConstraints" />
 
@@ -74,9 +75,9 @@
             android:id="@+id/textView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
             android:text="목"
             android:textSize="25dp"
-            android:layout_marginRight="30dp"
             app:layout_constraintEnd_toStartOf="@+id/textView15"
             tools:ignore="MissingConstraints" />
 
@@ -84,9 +85,9 @@
             android:id="@+id/textView15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
             android:text="금"
             android:textSize="25dp"
-            android:layout_marginRight="30dp"
             app:layout_constraintEnd_toStartOf="@+id/saterday"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteY="0dp" />
@@ -95,19 +96,39 @@
             android:id="@+id/saterday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
             android:text="토"
             android:textSize="25dp"
-            android:layout_marginRight="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="MissingConstraints" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:layout_width="wrap_content"
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="저장"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+        android:gravity="center"
+        android:hint="알람음"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/alreamname" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:text="취소" />
+        <Button
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:text="저장" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

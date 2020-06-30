@@ -99,9 +99,8 @@ public class alream extends Fragment {
     }
     public void addData(){
         mAdapter = new RecyclerViewAdapter_alream(mList);//어뎁터 클래스 명으로 생성
-
         binding.makeprototypeRecyclerview.setAdapter(mAdapter);
-        binding.makeprototypeRecyclerview.setLayoutManager(new LinearLayoutManager(getContext())) ;
+        binding.makeprototypeRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
         addItem(getResources().getDrawable(R.drawable.ic_alarm_24px),"test","2주기","07:00","월요일");
         addItem(getResources().getDrawable(R.drawable.ic_alarm_24px),"test","2주기","07:00","월요일");
         addItem(getResources().getDrawable(R.drawable.ic_alarm_24px),"test","2주기","07:00","월요일");

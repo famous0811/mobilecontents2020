@@ -14,10 +14,14 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <CalendarView
-            android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/journalCalender"/>
+            android:text="날짜"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="카테고리"/>
         <!--카테고리 설정-->
         <ExpandableListView
             android:layout_width="match_parent"

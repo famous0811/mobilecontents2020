@@ -32,13 +32,13 @@ public class SignupActivity extends AppCompatActivity {
     private String email,nickname,password;
     private SharedPreferences sp;
     private ActivitySignupBinding binding;
-    private boolean backsw=false;
+    private boolean backsw;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding=ActivitySignupBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        backsw=false;
         //로그인부분
         mAuth = FirebaseAuth.getInstance();
 
@@ -124,10 +124,17 @@ public class SignupActivity extends AppCompatActivity {
             return;
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-
         Map<String, Object> user = new HashMap<>();
         user.put("email", email);
         user.put("nickname", nickname);
+        //sharedpreferences에 값 저장
+        sp = getSharedPreferences("userdata",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("email",email);
+        editor.putString("password",password);
+        editor.putString("nickname",nickname);
+        editor.apply();
+
         db.collection("users").document(nickname)
                 .set(user)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -142,13 +149,5 @@ public class SignupActivity extends AppCompatActivity {
                         Log.w(TAG, "Error writing document", e);
                     }
                 });
-
-        //sharedpreferences에 값 저장
-        sp = getSharedPreferences("userdata",MODE_PRIVATE);
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putString("email",email);
-        editor.putString("password",password);
-        editor.putString("nickname",nickname);
-        editor.apply();
     }
 }

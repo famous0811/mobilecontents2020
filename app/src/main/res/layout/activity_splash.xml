@@ -7,14 +7,13 @@
     tools:context=".splash"
     android:background="@color/colorPrimary"
     tools:ignore="MissingConstraints">
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:orientation="vertical">
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:src="@mipmap/ic_main_foreground"
              />
     <TextView
@@ -25,12 +24,14 @@
         android:gravity="center"
         android:textColor="@color/colorBasicbackground"
         android:textSize="40dp"/>
+
         <TextView
+            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/app_introduce"
             android:gravity="center"
+            android:text="@string/app_introduce"
             android:textColor="@color/colorBasicbackground"
-            android:textSize="20dp"/>
-    </LinearLayout>
+            android:textSize="20dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

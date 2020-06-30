@@ -1,12 +1,20 @@
 package com.example.mobilecontent;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.mobilecontent.databinding.FragmentWriteBinding;
+import com.example.mobilecontent.items.RecyclerViewAdapter_write;
+import com.example.mobilecontent.items.recyclerItem_write;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,6 +27,25 @@ public class write extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private FragmentWriteBinding binding;
+    private RecyclerView.Adapter mAdapter;
+
+    private ArrayList<recyclerItem_write> mList=new ArrayList<recyclerItem_write>();;
+
+    @Override
+    public View onCreateView (LayoutInflater inflater,
+                              ViewGroup container,
+                              Bundle savedInstanceState) {
+        binding = FragmentWriteBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
+        DatesSet();
+        return view;
+    }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+//        binding = null;
+    }
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -54,11 +81,23 @@ public class write extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+    public void addItem(Drawable icon, String title, String goods, String contexts, String views){
+        recyclerItem_write item=new recyclerItem_write();
+        item.setIcon(icon);
+        item.settitle(title);
+        item.setGoods(goods);
+        item.setcontents(contexts);
+        item.setViews(views);
+        mList.add(item);
+        mAdapter.notifyDataSetChanged();
+    }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_write, container, false);
+    public void DatesSet(){
+        mAdapter=new RecyclerViewAdapter_write(mList);
+        binding.writtingRecyclerview.setAdapter(mAdapter);
+        binding.writtingRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
+        addItem(getResources().getDrawable(R.drawable.ic_alarm_24px),"이게 뭐임","10회","아니이게 뭐죠??....","10회");
+        addItem(getResources().getDrawable(R.drawable.ic_alarm_24px),"이게 뭐임","10회","아니이게 뭐죠??....","10회");
+        addItem(getResources().getDrawable(R.drawable.ic_alarm_24px),"이게 뭐임","10회","아니이게 뭐죠??....","10회");
     }
 }
