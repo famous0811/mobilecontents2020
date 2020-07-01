@@ -44,6 +44,7 @@
         <activity
             android:name=".writtensetting"
             android:screenOrientation="portrait"
+            android:parentActivityName=".writting"
             android:theme="@style/firstTheme" />
         <activity
             android:name=".writting"

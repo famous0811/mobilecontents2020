@@ -28,17 +28,19 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding=ActivityLoginBinding.inflate(getLayoutInflater());
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         mAuth = FirebaseAuth.getInstance();
 
+        String auto = sf.getString("autoLogin", "");
+
 
         //저장된 값을 불러오기 위해 같은 네임파일을 찾음.
-        sf = getSharedPreferences("userdata",MODE_PRIVATE);
+        sf = getSharedPreferences("userdata", MODE_PRIVATE);
         //text라는 key에 저장된 값이 있는지 확인. 아무값도 들어있지 않으면 ""를 반환
-        email = sf.getString("email","");
-        password = sf.getString("password","");
+        email = sf.getString("email", "");
+        password = sf.getString("password", "");
 
         binding.userid.setText(email);
         binding.userpassword.setText(password);

@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,7 +33,7 @@ public class write extends Fragment {
     private FragmentWriteBinding binding;
     private RecyclerView.Adapter mAdapter;
 
-    private ArrayList<recyclerItem_write> mList=new ArrayList<recyclerItem_write>();;
+    private ArrayList<recyclerItem_write> mList = new ArrayList<recyclerItem_write>();
 
     @Override
     public View onCreateView (LayoutInflater inflater,
@@ -39,6 +42,7 @@ public class write extends Fragment {
         binding = FragmentWriteBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
         DatesSet();
+        Spinner();
         return view;
     }
     @Override
@@ -92,12 +96,34 @@ public class write extends Fragment {
         mAdapter.notifyDataSetChanged();
     }
 
-    public void DatesSet(){
-        mAdapter=new RecyclerViewAdapter_write(mList);
+    public void DatesSet() {
+        mAdapter = new RecyclerViewAdapter_write(mList);
         binding.writtingRecyclerview.setAdapter(mAdapter);
         binding.writtingRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
-        addItem(getResources().getDrawable(R.drawable.ic_alarm_24px),"이게 뭐임","10회","아니이게 뭐죠??....","10회");
-        addItem(getResources().getDrawable(R.drawable.ic_alarm_24px),"이게 뭐임","10회","아니이게 뭐죠??....","10회");
-        addItem(getResources().getDrawable(R.drawable.ic_alarm_24px),"이게 뭐임","10회","아니이게 뭐죠??....","10회");
+        addItem(getResources().getDrawable(R.drawable.ic_alarm_24px), "이게 뭐임", "10회", "아니이게 뭐죠??....", "10회");
+        addItem(getResources().getDrawable(R.drawable.ic_alarm_24px), "이게 뭐임", "10회", "아니이게 뭐죠??....", "10회");
+        addItem(getResources().getDrawable(R.drawable.ic_alarm_24px), "이게 뭐임", "10회", "아니이게 뭐죠??....", "10회");
+    }
+
+    private void Spinner() {
+        String[] showset = new String[]{
+                "질문", "일지", "기타"
+        };
+
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, showset);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        binding.select.setAdapter(adapter1);
+        binding.select.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                Toast.makeText(getActivity(), Integer.toString(position), Toast.LENGTH_SHORT); //본인이 원하는 작업.
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 }

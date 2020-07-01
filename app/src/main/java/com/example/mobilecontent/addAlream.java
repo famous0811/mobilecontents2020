@@ -20,6 +20,7 @@ public class addAlream extends AppCompatActivity {
         binding=ActivityAddAlreamBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
 //        binding.timepicker.getHour();
 //        binding.timepicker.getMinute();
 

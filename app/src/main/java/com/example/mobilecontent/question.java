@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -46,6 +49,7 @@ public class question extends Fragment {
         binding = FragmentQuestionBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
         addData();
+        Spinner();
         return view;
     }
     @Override
@@ -81,8 +85,9 @@ public class question extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-    public void addItem(Drawable icon, String title, String catagori1, String catagori2){
-        recyclerItem_question item=new recyclerItem_question();
+
+    public void addItem(Drawable icon, String title, String catagori1, String catagori2) {
+        recyclerItem_question item = new recyclerItem_question();
 
         item.SetIcon(icon);
         item.setTitle(title);
@@ -92,13 +97,38 @@ public class question extends Fragment {
         mAdapter.notifyDataSetChanged();
 
     }
-    public void addData(){
+
+    private void Spinner() {
+        String[] showset = new String[]{
+                "질문", "일지", "기타", "4", "5", "6", "7"
+        };
+
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, showset);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        binding.select.setAdapter(adapter1);
+        binding.select.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                Toast.makeText(getActivity(), Integer.toString(position), Toast.LENGTH_SHORT); //본인이 원하는 작업.
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void addData() {
+
+
         mAdapter = new RecyclerViewAdapter_question(mList);//어뎁터 클래스 명으로 생성
         binding.questionsRecyclerview.setAdapter(mAdapter);
         binding.questionsRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
-        addItem(getResources().getDrawable(R.drawable.ic_alarm_24px),"test1","#노잼","시벌");
-        addItem(getResources().getDrawable(R.drawable.ic_alarm_24px),"test1","#노잼","시벌");
-        addItem(getResources().getDrawable(R.drawable.ic_alarm_24px),"test1","#노잼","시벌");
+        addItem(getResources().getDrawable(R.drawable.ic_alarm_24px), "test1", "#노잼", "시벌");
+        addItem(getResources().getDrawable(R.drawable.ic_alarm_24px), "test1", "#노잼", "시벌");
+        addItem(getResources().getDrawable(R.drawable.ic_alarm_24px), "test1", "#노잼", "시벌");
         addItem(getResources().getDrawable(R.drawable.ic_alarm_24px),"test1","#노잼","시벌");
     }
 }

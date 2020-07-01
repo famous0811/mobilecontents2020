@@ -1,52 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:layout_margin="7dp">
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_write_24px"
+        android:layout_centerVertical="true"
         android:id="@+id/icon"
-        android:layout_alignParentLeft="true"
-        android:layout_centerInParent="true"/>
+        android:src="@drawable/ic_alarm_24px"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@id/icon"
+        android:fontFamily="@font/maplestorylight"
+        android:text="07:30"
+        android:textSize="45dp" />
+
+    <TextView
+        android:id="@+id/meridiem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/time"
+        android:layout_toEndOf="@id/time"
+        android:fontFamily="@font/maplestorylight"
+        android:text="AM" />
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/title"
         android:layout_toRightOf="@id/time"
-        android:layout_marginLeft="20dp"
-        android:textStyle="bold"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@id/meridiem"
         android:textSize="20dp"
-        android:text="알로에 물주는날~~"
-        android:layout_centerInParent="true"/>
+        android:fontFamily="@font/maplestorylight"
+        android:paddingLeft="10dp"
+        android:text="알로에 " />
+
     <TextView
         android:id="@+id/cycle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="2주기"
+        android:layout_alignBottom="@id/weeks"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@id/weeks"
+        android:text="2주기" />
 
-        android:layout_toRightOf="@id/weeks" />
     <TextView
         android:id="@+id/weeks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:text="M"
-        android:layout_alignParentRight="true" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/icon"
-        android:id="@+id/time"
-        android:textSize="50dp"
-        android:text="07:30" />
+        android:layout_below="@id/time"
+        android:layout_alignLeft="@id/time"
+        android:fontFamily="@font/maplestorylight"
+        android:text="M" />
 
     <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="0dp"
-        android:layout_centerInParent="true"
-        android:thumb="@drawable/swich_alream_switch" />
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true" />
 </RelativeLayout>

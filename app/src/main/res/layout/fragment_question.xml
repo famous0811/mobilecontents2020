@@ -31,18 +31,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="질문 작성하기"/>
+            android:text="질문 작성하기" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="카테고리를 입력하세요" />
+        <!--        카테고리에 내가 쓴 글 카테고리 항목추가-->
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/catagori"
-            />
-<!--        카테고리에 내가 쓴 글 카테고리 항목추가-->
-        <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/select"
-        />
+            android:id="@+id/select" />
+
         <androidx.recyclerview.widget.RecyclerView
             tools:listitem="@layout/item_question"
             tools:viewBindingIgnore="true"

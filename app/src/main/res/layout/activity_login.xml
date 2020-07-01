@@ -62,17 +62,26 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:fontFamily="@font/maplestorylight"
-            android:text="로그인"
-            android:textColor="#ffffff"
-            app:backgroundTint="#7bc789" />
+    <CheckBox
+        android:id="@+id/autologin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:buttonTint="@color/colorPrimary"
+        android:fontFamily="@font/maplestorylight"
+        android:text="자동 로그인" />
 
-        <TextView
+    <Button
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:fontFamily="@font/maplestorylight"
+        android:text="로그인"
+        android:textColor="#ffffff"
+        app:backgroundTint="#7bc789" />
+
+    <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
