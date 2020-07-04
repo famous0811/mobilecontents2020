@@ -1,29 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".menu1">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
         tools:ignore="UselessParent">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.4"
-            android:gravity="center"
-            android:text="날씨 정보"/>
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="28dp"
+            android:src="@drawable/ic_wb_sunny_black_18dp"
+            android:tint="#ffab09"
+            app:layout_constraintBottom_toTopOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="28dp"
+            android:fontFamily="@font/maplestorylight"
+            android:text="30"
+            android:textColor="#000000"
+            android:textSize="100dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-1dp"
+            android:layout_marginTop="28dp"
+            android:fontFamily="@font/maplestorylight"
+            android:text="℃"
+            android:textColor="#000000"
+            android:textSize="100dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.6"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="308dp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="2020.07.01"
+            android:textSize="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+
+            android:fontFamily="@font/maplestorybold"
+            android:text="오늘의 일정"
+            android:textColor="@color/colorPrimary"
+            android:textSize="40dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="뭐 넣치??"/>
-    </LinearLayout>
+            android:fontFamily="@font/maplestorylight"
+            android:text="아직 일정이 없습니다.\n일정을 추가해 보세요!"
+            android:textColor="#80000000"
+
+            android:textSize="30dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            app:layout_constraintVertical_bias="0.516"
+            tools:layout_editor_absoluteX="70dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="30dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

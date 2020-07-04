@@ -60,9 +60,9 @@ public class RecyclerViewAdapter_question extends RecyclerView.Adapter<RecyclerV
         ViewHolder(View itemView){
             super(itemView);
             icon = itemView.findViewById(R.id.questionIcon);
-            title=itemView.findViewById(R.id.questiontitle);
-            catagri1=itemView.findViewById(R.id.catagori1);
-            catagri2=itemView.findViewById(R.id.catagori2);
+            title = itemView.findViewById(R.id.questiontitle);
+            catagri1 = itemView.findViewById(R.id.category_1);
+            catagri2 = itemView.findViewById(R.id.category_2);
         }
     }
 }

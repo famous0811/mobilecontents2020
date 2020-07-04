@@ -29,6 +29,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
         <!--            탑바에 사진검색 추가-->
         <TextView
+            android:id="@+id/writequstion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="질문 작성하기" />

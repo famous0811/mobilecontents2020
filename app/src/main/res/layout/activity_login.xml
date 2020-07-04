@@ -1,75 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:screenOrientation="portrait"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
     android:padding="20dp"
-    android:baselineAligned="false"
-    tools:context=".LoginActivity">
+    android:baselineAligned="false">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:fontFamily="@font/maplestorybold"
-            android:gravity="center"
-            android:text="@string/app_name"
-            android:textSize="6mm"
-            android:textStyle="bold" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:fontFamily="@font/maplestorybold"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textSize="6mm"
+        android:textStyle="bold" />
 
-        <com.google.android.material.textfield.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/maplestorylight"
+        android:hint="Email"
+        android:padding="3dp"
+        app:boxStrokeColor="#7bc789"
+        app:boxStrokeErrorColor="#EC5454">
 
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/maplestorylight"
-            android:hint="Email"
-            android:padding="3dp"
-            app:boxStrokeColor="#7bc789"
-            app:boxStrokeErrorColor="#EC5454">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/userid"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/maplestorylight"
-                android:inputType="textEmailAddress" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/userid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/maplestorylight"
-            android:hint="Password"
-            android:padding="3dp"
-            app:boxStrokeColor="#7bc789"
-            app:boxStrokeErrorColor="#EC5454"
-            app:endIconMode="password_toggle">
+            android:inputType="textEmailAddress" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/userpassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/maplestorylight"
-                android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/maplestorylight"
+        android:hint="Password"
+        android:padding="3dp"
+        app:boxStrokeColor="#7bc789"
+        app:boxStrokeErrorColor="#EC5454"
+        app:endIconMode="password_toggle">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/userpassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/maplestorylight"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <CheckBox
         android:id="@+id/autologin"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
-        android:buttonTint="@color/colorPrimary"
         android:fontFamily="@font/maplestorylight"
         android:text="자동 로그인" />
+
 
     <Button
         android:id="@+id/login"
@@ -81,49 +77,25 @@
         android:textColor="#ffffff"
         app:backgroundTint="#7bc789" />
 
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:fontFamily="@font/maplestorylight"
-            android:gravity="center"
-            android:text="login with"
-            tools:ignore="MissingConstraints" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="google" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="kakao" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="facebook" />
-
-        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:orientation="horizontal">
+            android:fontFamily="@font/maplestorylight"
+            android:text="plant paln의 회원이 아니신가요?" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/maplestorylight"
-                android:text="plant paln의 회원이 아니신가요?" />
-
-            <Button
-                android:id="@+id/signup"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/maplestorylight"
-                android:text="회원가입"
-                android:textColor="#7bc789" />
-        </LinearLayout>
+        <Button
+            android:id="@+id/signup"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/maplestorylight"
+            android:text="회원가입"
+            android:textColor="#7bc789" />
+    </LinearLayout>
 </LinearLayout>

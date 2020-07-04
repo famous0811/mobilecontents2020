@@ -21,26 +21,43 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "shared";
     private FirebaseAuth mAuth;
     private ActivityLoginBinding binding;
-    private static  String email;
-    private static  String password;
+    private static String email;
+    private static String password;
+    private String sw;
     private SharedPreferences sf;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+        mAuth = FirebaseAuth.getInstance();
+        sf = getSharedPreferences("userdata", MODE_PRIVATE);
+
+        boolean auto = sf.getBoolean("autoLogin", false);
+        email = sf.getString("email", "");
+        password = sf.getString("password", "");
+
+        if (auto) {
+            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        Toast.makeText(LoginActivity.this, "로그인 완료",
+                                Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(LoginActivity.this, "로그인 실패",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
         super.onCreate(savedInstanceState);
 
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        mAuth = FirebaseAuth.getInstance();
-
-        String auto = sf.getString("autoLogin", "");
-
-
         //저장된 값을 불러오기 위해 같은 네임파일을 찾음.
-        sf = getSharedPreferences("userdata", MODE_PRIVATE);
         //text라는 key에 저장된 값이 있는지 확인. 아무값도 들어있지 않으면 ""를 반환
-        email = sf.getString("email", "");
-        password = sf.getString("password", "");
 
         binding.userid.setText(email);
         binding.userpassword.setText(password);
@@ -52,23 +69,31 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        binding.login.setOnClickListener(new Button.OnClickListener(){
+        binding.autologin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-                String email=binding.userid.getText().toString();
-                String password=binding.userpassword.getText().toString();
-                if(email.length()==0 || password.length()==0)
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = sf.edit();
+                editor.putBoolean("autoLogin", binding.autologin.isChecked());
+//        editor.putString("nickname",nickname)
+                editor.apply();
+            }
+        });
+        binding.login.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                email = binding.userid.getText().toString();
+                password = binding.userpassword.getText().toString();
+                if (email.length() == 0 || password.length() == 0)
                     return;
 
-                mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                        if (task.isSuccessful()) {
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
                             Toast.makeText(LoginActivity.this, "로그인 완료",
                                     Toast.LENGTH_SHORT).show();
-                        }
-                        else{
+                        } else {
                             Toast.makeText(LoginActivity.this, "로그인 실패",
                                     Toast.LENGTH_SHORT).show();
                         }
@@ -77,12 +102,18 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
-    protected void onStop(){
+    protected void onStop() {
         super.onStop();
-        SharedPreferences.Editor editor = sf.edit();
-        editor.putString("email",email);
-        editor.putString("password",password);
+
+        SharedPreferences sp;
+
+        sp = getSharedPreferences("userdata", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("email", email);
+        editor.putString("password", password);
+
 //        editor.putString("nickname",nickname)
         editor.apply();
     }

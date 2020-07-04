@@ -2,6 +2,7 @@ package com.example.mobilecontent;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,8 +18,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mobilecontent.databinding.FragmentWriteBinding;
 import com.example.mobilecontent.items.RecyclerViewAdapter_write;
 import com.example.mobilecontent.items.recyclerItem_write;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -97,12 +105,29 @@ public class write extends Fragment {
     }
 
     public void DatesSet() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("userWritting")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Collection<Object> test = document.getData().values();
+                                Log.d("getdb", document.getId() + " => ");
+//                                addItem(getResources().getDrawable(R.drawable.ic_alarm_24px);
+                            }
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
         mAdapter = new RecyclerViewAdapter_write(mList);
         binding.writtingRecyclerview.setAdapter(mAdapter);
         binding.writtingRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
-        addItem(getResources().getDrawable(R.drawable.ic_alarm_24px), "이게 뭐임", "10회", "아니이게 뭐죠??....", "10회");
-        addItem(getResources().getDrawable(R.drawable.ic_alarm_24px), "이게 뭐임", "10회", "아니이게 뭐죠??....", "10회");
-        addItem(getResources().getDrawable(R.drawable.ic_alarm_24px), "이게 뭐임", "10회", "아니이게 뭐죠??....", "10회");
+        addItem(getResources().getDrawable(R.drawable.ic_account_circle_black_18dp), "이게 뭐임", "10회", "아니이게 뭐죠??....", "10회");
+        addItem(getResources().getDrawable(R.drawable.ic_account_circle_black_18dp), "이게 뭐임", "10회", "아니이게 뭐죠??....", "10회");
+        addItem(getResources().getDrawable(R.drawable.ic_account_circle_black_18dp), "이게 뭐임", "10회", "아니이게 뭐죠??....", "10회");
     }
 
     private void Spinner() {

@@ -12,10 +12,11 @@
         android:roundIcon="@mipmap/ic_main_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".sarchpiture"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity">
-        </activity>
+        <activity android:name=".writequestion"></activity>
+        <activity
+            android:name=".sarchpiture"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".showWriting"
             android:screenOrientation="portrait">
@@ -29,8 +30,7 @@
         </activity>
         <activity
             android:name=".addAlream"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".splash"
             android:screenOrientation="portrait"
@@ -43,13 +43,13 @@
         </activity>
         <activity
             android:name=".writtensetting"
-            android:screenOrientation="portrait"
             android:parentActivityName=".writting"
+            android:screenOrientation="portrait"
             android:theme="@style/firstTheme" />
         <activity
             android:name=".writting"
-            android:theme="@style/firstTheme"
-            android:parentActivityName=".MainActivity"/> <!--뒤로가기 버튼 설정 -->
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/firstTheme" /> <!-- 뒤로가기 버튼 설정 -->
         <activity
             android:name=".SignupActivity"
             android:screenOrientation="portrait"

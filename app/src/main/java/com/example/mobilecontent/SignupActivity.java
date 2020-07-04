@@ -29,16 +29,17 @@ import java.util.Map;
 public class SignupActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     public static final String TAG = "shared";
-    private String email,nickname,password;
+    private String email, nickname, password, passwordagain;
     private SharedPreferences sp;
     private ActivitySignupBinding binding;
     private boolean backsw;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding=ActivitySignupBinding.inflate(getLayoutInflater());
+        binding = ActivitySignupBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        backsw=false;
+        backsw = false;
         //로그인부분
         mAuth = FirebaseAuth.getInstance();
 
@@ -52,9 +53,13 @@ public class SignupActivity extends AppCompatActivity {
         binding.signup.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                email=binding.email.getText().toString();
-                nickname=binding.nickname.getText().toString();
-
+                email = binding.email.getText().toString();
+                nickname = binding.nickname.getText().toString();
+                if (password != passwordagain) {
+                    Toast.makeText(SignupActivity.this, "비밀번호를 잘못입력했습니다.",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
@@ -63,7 +68,7 @@ public class SignupActivity extends AppCompatActivity {
                                     // Sign in success, update UI with the signed-in user's information
                                     Log.d(TAG, "createUserWithEmail:success");
                                     FirebaseUser user = mAuth.getCurrentUser();
-                                    startActivity(new Intent(SignupActivity.this,LoginActivity.class));
+                                    startActivity(new Intent(SignupActivity.this, LoginActivity.class));
 
                                 } else {
                                     // If sign in fails, display a message to the user.
@@ -112,7 +117,7 @@ public class SignupActivity extends AppCompatActivity {
                 // 입력이 끝났을 때
 //                        if(arg0.toString().equals(password))
                 //애러처리 해주기
-                password=arg0.toString();
+                passwordagain = arg0.toString();
             }
         });
     }

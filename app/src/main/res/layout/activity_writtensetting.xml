@@ -9,21 +9,24 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:theme="@style/test"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="발행 설정" />
+            android:fontFamily="@font/maplestorylight"
+            android:text="공개 범위 설정" />
 
         <Button
             android:id="@+id/publish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="발행" />
+            android:fontFamily="@font/maplestorylight"
+            android:text="완료" />
     </androidx.appcompat.widget.Toolbar>
     <!--일지 공개여부, 일지 날짜 확인등등-->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -36,28 +39,26 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         tools:layout_editor_absoluteX="0dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="제목" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="카테고리" />
+            android:fontFamily="@font/maplestorylight"
+            android:text="카테고리"
+            android:textColor="#000000" />
         <!--카테고리 설정-->
         <ExpandableListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="공개" />
 
         <Switch
+            android:id="@+id/openswitch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/openswitch" />
+            android:layout_marginRight="10dp"
+            android:fontFamily="@font/maplestorylight"
+            android:text="공개"
+            app:layout_constraintRight_toRightOf="@id/linearLayout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

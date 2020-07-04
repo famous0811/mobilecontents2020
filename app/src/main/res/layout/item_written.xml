@@ -1,55 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    android:layout_margin="7dp">
 
     <ImageView
-        android:id="@+id/writenicon"
+        android:id="@+id/questionIcon"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_account_circle_black_18dp" />
+
+
+    <TextView
+        android:id="@+id/questiontitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_user_24px"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/questionIcon"
+        android:fontFamily="@font/maplestorybold"
+        android:text="알로에 폐기처분 방법"
+        android:textColor="#000000"
+        android:textSize="28dp"
+        android:textStyle="bold"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:layout_width="13dp"
+        android:layout_height="13dp"
+        android:layout_alignTop="@id/questiontitle"
+        android:layout_marginRight="1dp"
+        android:layout_toLeftOf="@id/views"
+        android:fontFamily="@font/maplestorylight"
+        android:src="@drawable/ic_visibility_black_18dp"
         tools:ignore="MissingConstraints" />
 
     <TextView
+        android:id="@+id/views"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1일차"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/writenviews"
-        app:layout_constraintStart_toEndOf="@+id/icon"
-        app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/writentitle"
-        android:textSize="20dp"/>
+        android:layout_alignTop="@id/questiontitle"
+        android:layout_marginRight="3dp"
+        android:layout_toLeftOf="@id/like"
+        android:fontFamily="@font/maplestorylight"
+        android:text="152"
+        android:textSize="13dp" />
+
+
+    <ImageView
+        android:id="@+id/like"
+        android:layout_width="13dp"
+        android:layout_height="13dp"
+        android:layout_alignTop="@id/questiontitle"
+        android:layout_marginRight="1dp"
+        android:layout_toLeftOf="@id/goods"
+        android:fontFamily="@font/maplestorylight"
+        android:src="@drawable/ic_thumb_up_black_18dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/writencontents"
+        android:id="@+id/goods"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="asfdlkndalsfidsnafldksaflk"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="15dp"/>
+        android:layout_alignTop="@id/questiontitle"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="15dp"
+        android:fontFamily="@font/maplestorylight"
+        android:text="10"
+        android:textSize="13dp" />
 
     <TextView
-        android:id="@+id/writenviews"
+        android:id="@+id/category_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="조회수 10회"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/writengoods"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_alignBottom="@id/questiontitle"
+        android:layout_marginRight="5dp"
+        android:layout_toStartOf="@id/category_2"
+        android:background="@drawable/rounded"
+        android:fontFamily="@font/maplestorylight"
+        android:padding="2dp"
+        android:text="#집가자"
+        android:textColor="@color/colorBasicbackground"
+        android:textSize="13dp" />
 
     <TextView
-        android:id="@+id/writengoods"
+        android:id="@+id/category_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="좋아요 10개"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/writencontents"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_alignBottom="@id/questiontitle"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/rounded"
+        android:fontFamily="@font/maplestorylight"
+        android:padding="2dp"
+        android:text="#인성쓰레기"
+        android:textColor="@color/colorBasicbackground"
+        android:textSize="13dp" />
+
+
+</RelativeLayout>

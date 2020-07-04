@@ -1,6 +1,7 @@
 package com.example.mobilecontent;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -50,6 +51,12 @@ public class question extends Fragment {
         View view = binding.getRoot();
         addData();
         Spinner();
+        binding.writequstion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), writequestion.class));
+            }
+        });
         return view;
     }
     @Override
@@ -121,14 +128,12 @@ public class question extends Fragment {
     }
 
     public void addData() {
-
-
         mAdapter = new RecyclerViewAdapter_question(mList);//어뎁터 클래스 명으로 생성
         binding.questionsRecyclerview.setAdapter(mAdapter);
         binding.questionsRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
-        addItem(getResources().getDrawable(R.drawable.ic_alarm_24px), "test1", "#노잼", "시벌");
-        addItem(getResources().getDrawable(R.drawable.ic_alarm_24px), "test1", "#노잼", "시벌");
-        addItem(getResources().getDrawable(R.drawable.ic_alarm_24px), "test1", "#노잼", "시벌");
-        addItem(getResources().getDrawable(R.drawable.ic_alarm_24px),"test1","#노잼","시벌");
+        addItem(getResources().getDrawable(R.drawable.ic_account_circle_black_18dp), "이건 어떻게 해요??", "#질문", "#식물");
+        addItem(getResources().getDrawable(R.drawable.ic_account_circle_black_18dp), "이건 어떻게 해요??", "#질문", "#식물");
+        addItem(getResources().getDrawable(R.drawable.ic_account_circle_black_18dp), "이건 어떻게 해요??", "#질문", "#식물");
+        addItem(getResources().getDrawable(R.drawable.ic_account_circle_black_18dp), "이건 어떻게 해요??", "#질문", "#식물");
     }
 }

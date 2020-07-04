@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     }
                     case R.id.navigation_alarm: {
-                        binding.title.setText("alram");
+                        binding.title.setText("alarm");
                         binding.topbarButton.setVisibility(View.VISIBLE);
                         binding.topbarButton.setOnClickListener(new View.OnClickListener() {
                             @Override

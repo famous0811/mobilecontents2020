@@ -33,11 +33,10 @@ public class RecyclerViewAdapter_write extends RecyclerView.Adapter<RecyclerView
 
         ViewHolder(View itemView){
             super(itemView);
-            icon = itemView.findViewById(R.id.writenicon);
-            views=itemView.findViewById(R.id.writenviews);
-            goods=itemView.findViewById(R.id.writengoods);
-            some_contents=itemView.findViewById(R.id.writencontents);
-            title=itemView.findViewById(R.id.writentitle);
+            icon = itemView.findViewById(R.id.questionIcon);
+            views = itemView.findViewById(R.id.views);
+            goods = itemView.findViewById(R.id.goods);
+            title = itemView.findViewById(R.id.questiontitle);
         }
     }
 
@@ -57,7 +56,6 @@ public class RecyclerViewAdapter_write extends RecyclerView.Adapter<RecyclerView
         recyclerItem_write item= items.get(position);
         holder.icon.setImageDrawable(item.getIcon());
         holder.goods.setText(item.getGoods());
-        holder.some_contents.setText(item.getContents());
         holder.title.setText(item.getTitle());
         holder.views.setText(item.getViews());
     }
