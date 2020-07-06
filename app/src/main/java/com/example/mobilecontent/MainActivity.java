@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -65,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     case R.id.navigation_alarm: {
                         binding.title.setText("alarm");
+                        binding.topbarButton.setBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.ic_add_24px));
                         binding.topbarButton.setVisibility(View.VISIBLE);
                         binding.topbarButton.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -77,31 +79,33 @@ public class MainActivity extends AppCompatActivity {
                     }
                     case R.id.navigation_question: {
                         binding.topbarButton.setVisibility(View.VISIBLE);
+                        binding.topbarButton.setBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.ic_camera_24px));
                         binding.topbarButton.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                startActivity(new Intent(MainActivity.this,sarchpiture.class));
+                                startActivity(new Intent(MainActivity.this, sarchpiture.class));
                             }
                         });
                         binding.title.setText("question");
                         transaction.replace(R.id.nav_host_fragment, questionFragment).commitAllowingStateLoss();
                         break;
                     }
-                    case R.id.navigation_user: {
-                        binding.title.setText("user");
-                        transaction.replace(R.id.nav_host_fragment, quserFramgent).commitAllowingStateLoss();
-                        break;
-                    }
                     case R.id.navigation_write: {
                         binding.topbarButton.setVisibility(View.VISIBLE);
                         binding.title.setText("write");
+                        binding.topbarButton.setBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.ic_pen_24px));
                         binding.topbarButton.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                startActivity(new Intent(MainActivity.this,writting.class));
+                                startActivity(new Intent(MainActivity.this, writting.class));
                             }
                         });
                         transaction.replace(R.id.nav_host_fragment, writeFragment).commitAllowingStateLoss();
+                        break;
+                    }
+                    case R.id.navigation_user: {
+                        binding.title.setText("user");
+                        transaction.replace(R.id.nav_host_fragment, quserFramgent).commitAllowingStateLoss();
                         break;
                     }
                 }

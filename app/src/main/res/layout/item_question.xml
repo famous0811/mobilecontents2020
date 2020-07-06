@@ -32,13 +32,13 @@
         android:layout_height="13dp"
         android:layout_alignTop="@id/questiontitle"
         android:layout_marginRight="1dp"
-        android:layout_toLeftOf="@id/views"
+        android:layout_toLeftOf="@id/question_views"
         android:fontFamily="@font/maplestorylight"
         android:src="@drawable/ic_visibility_black_18dp"
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/views"
+        android:id="@+id/question_views"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/questiontitle"
@@ -55,13 +55,13 @@
         android:layout_height="13dp"
         android:layout_alignTop="@id/questiontitle"
         android:layout_marginRight="1dp"
-        android:layout_toLeftOf="@id/goods"
+        android:layout_toLeftOf="@id/question_goods"
         android:fontFamily="@font/maplestorylight"
         android:src="@drawable/ic_thumb_up_black_18dp"
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/goods"
+        android:id="@+id/question_goods"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/questiontitle"
@@ -82,7 +82,7 @@
         android:fontFamily="@font/maplestorylight"
         android:padding="2dp"
         android:text="#집가자"
-        android:textColor="@color/colorBasicbackground"
+        android:textColor="@color/colorPrimary"
         android:textSize="13dp" />
 
     <TextView
@@ -96,7 +96,7 @@
         android:fontFamily="@font/maplestorylight"
         android:padding="2dp"
         android:text="#인성쓰레기"
-        android:textColor="@color/colorBasicbackground"
+        android:textColor="@color/colorPrimary"
         android:textSize="13dp" />
 
 

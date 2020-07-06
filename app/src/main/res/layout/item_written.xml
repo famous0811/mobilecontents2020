@@ -82,7 +82,7 @@
         android:fontFamily="@font/maplestorylight"
         android:padding="2dp"
         android:text="#집가자"
-        android:textColor="@color/colorBasicbackground"
+        android:textColor="@color/colorPrimary"
         android:textSize="13dp" />
 
     <TextView
@@ -96,7 +96,7 @@
         android:fontFamily="@font/maplestorylight"
         android:padding="2dp"
         android:text="#인성쓰레기"
-        android:textColor="@color/colorBasicbackground"
+        android:textColor="@color/colorPrimary"
         android:textSize="13dp" />
 
 

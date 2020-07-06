@@ -28,30 +28,12 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         mAuth = FirebaseAuth.getInstance();
         sf = getSharedPreferences("userdata", MODE_PRIVATE);
 
-        boolean auto = sf.getBoolean("autoLogin", false);
         email = sf.getString("email", "");
         password = sf.getString("password", "");
 
-        if (auto) {
-            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                        Toast.makeText(LoginActivity.this, "로그인 완료",
-                                Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(LoginActivity.this, "로그인 실패",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-        }
         super.onCreate(savedInstanceState);
 
         binding = ActivityLoginBinding.inflate(getLayoutInflater());

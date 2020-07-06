@@ -20,6 +20,7 @@
                 android:paddingLeft="20dp"
                 android:hint="검색어를 입력하세요"
                 android:id="@+id/edittext" />
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -28,21 +29,59 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
         <!--            탑바에 사진검색 추가-->
-        <TextView
-            android:id="@+id/writequstion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="질문 작성하기" />
-
-        <EditText
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="카테고리를 입력하세요" />
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/editcatgori"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="카테고리를 입력하세요" />
+
+            <ImageView
+                android:id="@+id/addCagori"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_send_24px"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
         <!--        카테고리에 내가 쓴 글 카테고리 항목추가-->
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/select" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/select" />
+
+            <LinearLayout
+                android:id="@+id/catagoris"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+                <!--                <TextView-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:background="@drawable/rounded"-->
+                <!--                    android:text="#test"-->
+                <!--                    android:layout_marginRight="10dp"-->
+                <!--                    android:textColor="@color/colorPrimary" />-->
+
+                <!--                <TextView-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:background="@drawable/rounded"-->
+                <!--                    android:text="#test"-->
+                <!--                    android:layout_marginRight="10dp"-->
+                <!--                    android:textColor="@color/colorPrimary" />-->
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             tools:listitem="@layout/item_question"
@@ -50,7 +89,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:id="@+id/questions_recyclerview"/>
+            android:id="@+id/questions_recyclerview" />
     </LinearLayout>
 
 </FrameLayout>

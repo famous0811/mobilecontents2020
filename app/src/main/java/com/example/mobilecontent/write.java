@@ -16,8 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobilecontent.databinding.FragmentWriteBinding;
-import com.example.mobilecontent.items.RecyclerViewAdapter_write;
-import com.example.mobilecontent.items.recyclerItem_write;
+import com.example.mobilecontent.items.RecyclerViewAdapter_QuestionWrite;
+import com.example.mobilecontent.items.recyclerItem_QuestionWrite;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -25,7 +25,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,7 +40,7 @@ public class write extends Fragment {
     private FragmentWriteBinding binding;
     private RecyclerView.Adapter mAdapter;
 
-    private ArrayList<recyclerItem_write> mList = new ArrayList<recyclerItem_write>();
+    private ArrayList<recyclerItem_QuestionWrite> mList = new ArrayList<recyclerItem_QuestionWrite>();
 
     @Override
     public View onCreateView (LayoutInflater inflater,
@@ -93,18 +92,21 @@ public class write extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-    public void addItem(Drawable icon, String title, String goods, String contexts, String views){
-        recyclerItem_write item=new recyclerItem_write();
-        item.setIcon(icon);
-        item.settitle(title);
-        item.setGoods(goods);
-        item.setcontents(contexts);
-        item.setViews(views);
+
+    public void addItem(Drawable icon, String title, String catagori1, String catagori2, int goods, int views) {
+        recyclerItem_QuestionWrite item = new recyclerItem_QuestionWrite();
+        item.SetIcon(icon);
+        item.setTitle(title);
+        item.SetGoods(goods);
+        item.SetViews(views);
+        item.setcatagori1(catagori1);
+        item.setcatagori2(catagori2);
         mList.add(item);
         mAdapter.notifyDataSetChanged();
     }
 
     public void DatesSet() {
+        mList = new ArrayList<recyclerItem_QuestionWrite>();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("userWritting")
                 .get()
@@ -113,26 +115,26 @@ public class write extends Fragment {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Collection<Object> test = document.getData().values();
-                                Log.d("getdb", document.getId() + " => ");
-//                                addItem(getResources().getDrawable(R.drawable.ic_alarm_24px);
+                                addItem(getResources().getDrawable(R.drawable.ic_account_circle_black_18dp), document.getData().get("title").toString(), "#질문", "#식물"
+                                        , Integer.parseInt(document.get("goods").toString()), Integer.parseInt(document.get("views").toString()));
                             }
                         } else {
                             Log.w("TAG", "Error getting documents.", task.getException());
                         }
                     }
                 });
-        mAdapter = new RecyclerViewAdapter_write(mList);
+
+        mAdapter = new RecyclerViewAdapter_QuestionWrite(mList);
         binding.writtingRecyclerview.setAdapter(mAdapter);
         binding.writtingRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
-        addItem(getResources().getDrawable(R.drawable.ic_account_circle_black_18dp), "이게 뭐임", "10회", "아니이게 뭐죠??....", "10회");
-        addItem(getResources().getDrawable(R.drawable.ic_account_circle_black_18dp), "이게 뭐임", "10회", "아니이게 뭐죠??....", "10회");
-        addItem(getResources().getDrawable(R.drawable.ic_account_circle_black_18dp), "이게 뭐임", "10회", "아니이게 뭐죠??....", "10회");
+//        addItem(getResources().getDrawable(R.drawable.ic_account_circle_black_18dp), "이게 뭐임", "10회", "아니이게 뭐죠??....", "10회");
+//        addItem(getResources().getDrawable(R.drawable.ic_account_circle_black_18dp), "이게 뭐임", "10회", "아니이게 뭐죠??....", "10회");
+//        addItem(getResources().getDrawable(R.drawable.ic_account_circle_black_18dp), "이게 뭐임", "10회", "아니이게 뭐죠??....", "10회");
     }
 
     private void Spinner() {
         String[] showset = new String[]{
-                "질문", "일지", "기타"
+                "질문", "일지"
         };
 
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, showset);
@@ -144,7 +146,6 @@ public class write extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 Toast.makeText(getActivity(), Integer.toString(position), Toast.LENGTH_SHORT); //본인이 원하는 작업.
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
