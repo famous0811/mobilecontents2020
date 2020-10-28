@@ -3,6 +3,7 @@ package com.example.mobilecontent;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -110,7 +111,6 @@ public class addAlream extends AppCompatActivity {
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.select.setAdapter(adapter1);
         binding.select.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 Toast.makeText(addAlream.this, Integer.toString(position), Toast.LENGTH_SHORT); //본인이 원하는 작업.
@@ -124,47 +124,75 @@ public class addAlream extends AppCompatActivity {
     }
 
     private void onclickchick() {
+
+        //color reset
+
         binding.sunday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DayOfWeek = "sunday";
+                resetcolor();
+//                String color=R.color.colorPrimary;
+                binding.sunday.setTextColor(Color.parseColor("#7dc488"));
             }
         });
         binding.monday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DayOfWeek = "sunday";
+                resetcolor();
+                binding.monday.setTextColor(Color.parseColor("#7dc488"));
             }
         });
         binding.Tuesday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DayOfWeek = "sunday";
+                resetcolor();
+                binding.Tuesday.setTextColor(Color.parseColor("#7dc488"));
             }
         });
         binding.weather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DayOfWeek = "sunday";
+                resetcolor();
+                binding.weather.setTextColor(Color.parseColor("#7dc488"));
             }
         });
         binding.Thursday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DayOfWeek = "sunday";
+                resetcolor();
+                binding.Thursday.setTextColor(Color.parseColor("#7dc488"));
             }
         });
         binding.Friday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DayOfWeek = "sunday";
+                resetcolor();
+                binding.Friday.setTextColor(Color.parseColor("#7dc488"));
             }
         });
         binding.saterday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DayOfWeek = "saterday";
+                resetcolor();
+                binding.saterday.setTextColor(Color.parseColor("#7dc488"));
             }
         });
+    }
+
+    private void resetcolor() {
+        binding.sunday.setTextColor(Color.parseColor("#000000"));
+        binding.monday.setTextColor(Color.parseColor("#000000"));
+        binding.Tuesday.setTextColor(Color.parseColor("#000000"));
+        binding.weather.setTextColor(Color.parseColor("#000000"));
+        binding.Thursday.setTextColor(Color.parseColor("#000000"));
+        binding.Friday.setTextColor(Color.parseColor("#000000"));
+        binding.saterday.setTextColor(Color.parseColor("#000000"));
     }
 }
